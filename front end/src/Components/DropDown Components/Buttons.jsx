@@ -1,0 +1,81 @@
+import React, { Component } from "react";
+import "./Buttons.css";
+import { connect } from "react-redux";
+import { resetCart } from "../../Actions/actions";
+import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
+import { totalSelector } from "../../Selectors/totalSelector";
+
+const CartLink = styled(Link)`
+  display:inline-block;
+  text-decoration: none;
+  color: #1d1f22;
+
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: #1d1f22;
+  }
+`;
+
+export class Buttons extends Component {
+  render() {
+    const cart = this.props.cart.cartItems;
+    const currencies = this.props.currencies;
+    const selectedCurr = this.props.selectedCurr;
+    const total = this.props.total;
+
+    const liknClass = cart?.length === 0 ? "disabled" : ""
+
+    const mappedCurr = currencies?.map((item) => {
+      return item.label === selectedCurr ? (
+        <div className="total-amount" key={item.label}>
+          {item.symbol}
+          {total}
+        </div>
+      ) : undefined;
+    });
+
+    return (
+      <>
+        <div className="total">
+          <div className="total-text">Total</div>
+          {mappedCurr}
+        </div>
+        <div className="buttons">
+          <CartLink
+            to="/cart"
+            replace
+            className={liknClass}
+          >
+            <button className="view-bag" onClick={this.props.hideMiniCart}>
+              VIEW BAG
+            </button>
+          </CartLink>
+          <button onClick={this.props.resetCart} className="check-out">
+            CHECK OUT
+          </button>
+        </div>
+      </>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart,
+    currencies: state.currencies.items,
+    selectedCurr: state.selectedCurr.selectedCurr,
+    total: totalSelector(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    resetCart: () => dispatch(resetCart()),
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Buttons)
+);

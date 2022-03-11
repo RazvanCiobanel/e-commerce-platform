@@ -1,0 +1,79 @@
+import React, { Component } from "react";
+import "./NavLinks.css";
+import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
+import brandicon from "../../brandIcon.jpg";
+import { namesSelector } from "../../Selectors/namesSelector";
+import { connect } from "react-redux";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #1d1f22;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 120%;
+  text-transform: uppercase;
+
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: rgba(84, 229, 130, 255);
+    border-bottom: 1px solid rgba(84, 229, 130, 255);
+    padding-bottom: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+  }
+`;
+
+export class NavLinks extends Component {
+  render() {
+    const catNames = this.props.categories;
+
+    const names = catNames?.map((name) => {
+      if (name === "all") {
+        return (
+          <li className="div-links" key={name}>
+            <StyledLink to="/" replace>
+              {name}
+            </StyledLink>
+          </li>
+        );
+      } else {
+        return (
+          <li className="div-links" key={name}>
+            <StyledLink
+              to={{
+                pathname: `/plp/${name}`,
+              }}
+              replace
+            >
+              {name}
+            </StyledLink>
+          </li>
+        );
+      }
+    });
+
+    return (
+      <>
+        <div className="nav-links" onClick={this.props.hideMiniCart}>
+          <ul className="navbar">{names}</ul>
+        </div>
+        <div className="brand-logo" onClick={this.props.hideMiniCart}>
+          <img src={brandicon} alt="brand icon" />
+        </div>
+      </>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    categories: namesSelector(state),
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(NavLinks));

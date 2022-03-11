@@ -1,0 +1,41 @@
+.image {
+  position: relative;
+}
+
+.article-image {
+  object-fit: contain;
+}
+
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 160%;
+  color: #8d8f9a;
+}
+
+.addBtn {
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #5ece7b;
+  grid-column: 2/-1;
+  grid-row: 2/3;
+  position: absolute;
+  right: 15px;
+  bottom: -26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.art-name {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+}

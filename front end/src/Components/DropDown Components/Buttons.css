@@ -1,0 +1,59 @@
+.total {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.total-text {
+  align-self: flex-start;
+  justify-self: flex-start;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  margin-left: 6px;
+}
+
+.total-amount {
+  align-self: flex-end;
+  margin-right: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 160%;
+}
+
+.buttons {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.view-bag {
+  width: 140px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  background-color: white;
+  border: 1px solid #1d1f22;
+  margin: 6px;
+}
+
+.check-out {
+  width: 140px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: white;
+  background-color: #5ece7b;
+  border: 0;
+  margin: 6px;
+}

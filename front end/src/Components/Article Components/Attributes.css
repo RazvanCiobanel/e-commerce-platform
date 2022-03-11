@@ -1,0 +1,29 @@
+.swatch {
+  display: flex;
+  flex-direction: column;
+}
+
+.swatch-flex {
+  display: flex;
+}
+
+.art-box {
+  text-align: center;
+  height: 35px;
+  width: 35px;
+  margin: 0 2px;
+  border: 1px solid #1d1f22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-break: break-all;
+}
+
+.art-Is-Selected-Swatch {
+  padding: 5px;
+}
+
+.art-Is-Selected {
+  background-color: #1d1f22;
+  color: white;
+}

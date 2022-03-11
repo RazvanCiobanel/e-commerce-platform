@@ -1,0 +1,45 @@
+.cart-attr {
+  font-family: "Roboto Condensed";
+  font-weight: bold;
+  font-size: 18px;
+  text-align: left;
+  padding:3px 0;
+}
+
+.swatch-flex {
+  display: flex;
+}
+
+.cart-box {
+  text-align: center;
+  height: 45px;
+  width: 63px;
+  margin: 0 2px;
+  border: 1px solid #1d1f22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.cart-box-swatch {
+  height: 63px;
+  width: 63px;
+  margin: 0 2px;
+  border: 1px solid #1d1f22;
+}
+
+.cart-not-Selected-Swatch {
+  opacity: 0.2;
+}
+
+.cart-Is-Selected {
+  background-color: #1d1f22;
+  color: white;
+}

@@ -1,0 +1,41 @@
+.logo {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  height: 60px;
+  flex: 1 0 100%;
+}
+
+.cart {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  float: right;
+  position: absolute;
+  margin-right: 30px;
+}
+
+.cart-size {
+  position: absolute;
+  left: 48%;
+  right: 6.11%;
+  top: 9px;
+  bottom: 43.75%;
+  background-color: #1d1f22;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}

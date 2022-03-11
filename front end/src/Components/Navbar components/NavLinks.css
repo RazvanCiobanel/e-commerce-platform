@@ -1,0 +1,23 @@
+.nav-links {
+  position: relative;
+  margin-left: 70px;
+  flex: 1 0 33%;
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.navbar > li {
+  display: inline;
+  float: left;
+  padding: 1rem;
+}
+
+.brand-logo {
+  align-self: center;
+  text-align: center;
+  flex: 1 0 33%;
+}

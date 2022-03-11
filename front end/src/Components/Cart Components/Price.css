@@ -1,0 +1,21 @@
+.cart-brand {
+  margin-top: 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.cart-name {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: left;
+}
+
+.cart-price {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: left;
+}

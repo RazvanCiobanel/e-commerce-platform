@@ -1,0 +1,29 @@
+nav {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  z-index: 9990;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  font-size: 1.2rem;
+  height: 60px;
+}
+
+.cart-currency {
+  flex: 1 0 33%;
+  align-self: center;
+  margin-left: 150px;
+}
+
+.my-select {
+  display: flex;
+  flex: 1 0 100%;
+  justify-self: flex-end;
+  align-items: flex-end;
+  text-align: center;
+  height: 60px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}

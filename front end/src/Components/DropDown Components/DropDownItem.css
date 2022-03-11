@@ -1,0 +1,18 @@
+.drd-item {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.drd-description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 16px;
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin-right: auto;
+}

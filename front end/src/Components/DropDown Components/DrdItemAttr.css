@@ -1,0 +1,37 @@
+.drd-attr {
+  font-size: 16px;
+  text-align: left;
+}
+
+.swatch-flex {
+  display: flex;
+}
+
+.drd-box {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #1d1f22;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-wrap;
+  text-align: center;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+
+.not-Selected {
+  border: 1px solid #a6a6a6;
+  color: #a6a6a6;
+  background-color: rgba(166, 166, 166, 0, 2);
+}
+
+.swatch-not-selected {
+  border: 1px solid #a6a6a6;
+  opacity: 0.2;
+}

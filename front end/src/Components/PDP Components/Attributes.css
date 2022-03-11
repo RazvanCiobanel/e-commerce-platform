@@ -1,0 +1,62 @@
+.pdp-brand {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.pdp-name {
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.pdp-attr {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #1d1f22;
+}
+
+.swatch-flex {
+  display: flex;
+}
+
+.pdp-box {
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1d1f22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 6px;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+}
+
+.pdp-box-swatch {
+  width: 63px;
+  height: 63px;
+  border: 1px solid #1d1f22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 6px;
+}
+
+.pdp-Is-Selected-Swatch {
+  padding: 5px;
+}
+
+.pdp-Is-Selected {
+  background-color: #1d1f22;
+  color: white;
+}

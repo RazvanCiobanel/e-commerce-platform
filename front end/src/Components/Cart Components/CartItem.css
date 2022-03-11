@@ -1,0 +1,8 @@
+.cart-product {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
+  justify-self: flex-start;
+}
