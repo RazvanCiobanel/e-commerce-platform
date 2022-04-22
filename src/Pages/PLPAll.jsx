@@ -24,40 +24,45 @@ export class PLPAll extends Component {
   }
 
   render() {
+    
     const all = this.props.all;
 
     const name = this.props?.all?.name[0]
       ?.toUpperCase()
       .concat(this.props.all.name?.slice(1));
 
-    const article = this.props.all?.products?.map((item) => {
-      return (
-        <StyledLink
-          to={{
-            pathname: `/pdp/${item.id}`,
-          }}
-          key={item.id}
-          replace
-        >
-          <Article
+    const article = this.props.all?.products?.map(
+      (item) => {
+        return (
+          <StyledLink
+            to={{
+              pathname: `/pdp/${item.id}`,
+            }}
             key={item.id}
-            name={item.name}
-            inStock={item.inStock}
-            img={item.gallery[0]}
-            prices={item.prices}
-            id={item.id}
-            brand={item.brand}
-            attributes={item.attributes}
-            gallery={item.gallery}
-            item={JSON.stringify(item)}
-          />
-        </StyledLink>
-      );
-    });
+            replace
+          >
+            <Article
+              key={item.id}
+              name={item.name}
+              inStock={item.inStock}
+              img={item.gallery[0]}
+              prices={item.prices}
+              id={item.id}
+              brand={item.brand}
+              attributes={item.attributes}
+              gallery={item.gallery}
+              item={JSON.stringify(item)}
+            />
+          </StyledLink>
+        );
+      }
+    );
 
     return (
       <section onClick={this.props.hideMiniCart}>
-        {this.props.isVisible && <div className="backdrop"></div>}
+        {this.props.isVisible && (
+          <div className="backdrop"></div>
+        )}
         <h2 className="category-heading">{name}</h2>
         {all && article}
       </section>
@@ -77,4 +82,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PLPAll));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PLPAll)
+);

@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { changeCurr } from "../../Actions/actions";
 
 export class Select extends Component {
+
   state = {
     visible: false,
   };
 
   render() {
+    
     const handleOnChange = () => {
       if (this.state.visible === false) {
         this.setState({
@@ -36,7 +38,10 @@ export class Select extends Component {
             value={item.label}
             id={item.label}
           />
-          <label className="select_label" htmlFor={item.label}>
+          <label
+            className="select_label"
+            htmlFor={item.label}
+          >
             {item.symbol} {item.label}
           </label>
         </li>
@@ -54,7 +59,9 @@ export class Select extends Component {
               id="awesomeness-close"
               value=""
             />
-            <div className="select_label select_label-placeholder">$</div>
+            <div className="select_label select_label-placeholder">
+              $
+            </div>
           </li>
           <li className="select_items">
             <input
@@ -91,4 +98,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Select);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Select);

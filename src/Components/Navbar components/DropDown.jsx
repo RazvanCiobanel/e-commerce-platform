@@ -7,12 +7,16 @@ import DropDownItem from "../DropDown Components/DropDownItem";
 import Buttons from "../DropDown Components/Buttons";
 
 export class DropDown extends Component {
+
   render() {
+    
     const cart = this.props.cart.cartItems;
-    const isVisible = this.props.isVisible
+    const isVisible = this.props.isVisible;
     const quantity = this.props.cart.totalQuantity;
 
-    const drdClass = isVisible? "dropdown-content": "hide"
+    const drdClass = isVisible
+      ? "dropdown-content"
+      : "hide";
 
     const item = cart?.map((item, i) => {
       return (
@@ -28,8 +32,6 @@ export class DropDown extends Component {
             i={i}
             quantity={item?.quantity}
           />
-          <br />
-          <br />
         </div>
       );
     });
@@ -42,7 +44,7 @@ export class DropDown extends Component {
               <b>My Bag</b>, {quantity} items
             </p>
           </span>
-          <br />
+
           {cart && item}
           <Buttons hideMiniCart={this.props.hideMiniCart} />
         </div>
@@ -57,4 +59,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(DropDown));
+export default withRouter(
+  connect(mapStateToProps)(DropDown)
+);

@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const GET_CATEGORIES_QUERY = gql`
+const GET_NAMES_QUERY = gql`
   query categories {
     categories {
       name
@@ -84,5 +84,5 @@ export {
   GET_PRODUCT_QUERY,
   GET_CURRENCY_QUERY,
   GET_CATEGORY_QUERY,
-  GET_CATEGORIES_QUERY,
+  GET_NAMES_QUERY,
 };

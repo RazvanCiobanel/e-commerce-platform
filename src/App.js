@@ -12,7 +12,6 @@ import { getCatNames } from "./Actions/actions";
 export class App extends Component {
   state = {
     isVisible: false,
-    names: [],
   };
 
   async componentDidMount() {
@@ -40,7 +39,6 @@ export class App extends Component {
           showMiniCart={showMiniCart}
           isVisible={this.state.isVisible}
           hideMiniCart={hideMiniCart}
-          names={this.props.categories}
         />
 
         <Switch>
@@ -57,7 +55,10 @@ export class App extends Component {
             />
           </Route>
           <Route exact path="/pdp/:id">
-            <PDP isVisible={this.state.isVisible} hideMiniCart={hideMiniCart} />
+            <PDP
+              isVisible={this.state.isVisible}
+              hideMiniCart={hideMiniCart}
+            />
           </Route>
           <Route
             path="/plp/:name"

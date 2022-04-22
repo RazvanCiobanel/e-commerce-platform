@@ -7,11 +7,13 @@ import Attributes from "./Article Components/Attributes";
 import Price from "./Article Components/Price";
 
 class Article extends Component {
+
   state = {
     showOtherAttr: false,
   };
 
   render() {
+    
     const inStock = this.props.inStock;
     const id = this.props.id;
     const item = JSON.parse(this.props.item);
@@ -68,14 +70,16 @@ class Article extends Component {
           showOtherAttr={this.state.showOtherAttr}
           item={this.props.item}
         />
-        <Price prices={this.props.prices} id={this.props.id} />
+        <Price
+          prices={this.props.prices}
+          id={this.props.id}
+        />
         <Attributes
           attributes={this.props.attributes}
           id={this.props.id}
           showOtherAttr={this.state.showOtherAttr}
           inStock={this.props.inStock}
         />
-        
       </div>
     );
   }
@@ -94,4 +98,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Article);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Article);

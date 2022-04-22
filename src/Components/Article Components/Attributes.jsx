@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import "./Attributes.css";
 import { connect } from "react-redux";
 import { choosePlpAttr } from "../../Actions/actions";
+import { colorFirst } from "../../Utils/appUtils";
 
 export class Attributes extends Component {
+
   render() {
+    
     const attributes = this.props.attributes;
     const id = this.props.id;
     const inStock = this.props.inStock;
+    const changedOrder = colorFirst(attributes);
 
     const handleAttrClick = (e) => {
       if (inStock) {
@@ -17,7 +21,7 @@ export class Attributes extends Component {
       }
     };
 
-    const mappedAttr = attributes?.map((attr, index) => {
+    const mappedAttr = changedOrder?.map((attr, index) => {
       return (
         <div
           id={id}
@@ -25,7 +29,8 @@ export class Attributes extends Component {
           className={
             attr.type === "swatch"
               ? "swatch"
-              : attr.type !== "swatch" && this.props.showOtherAttr === false
+              : attr.type !== "swatch" &&
+                this.props.showOtherAttr === false
               ? "hidden"
               : "swatch"
           }
@@ -35,33 +40,58 @@ export class Attributes extends Component {
 
           {/* attribute representation */}
           <div className="swatch-flex">
-            {attributes[index].items?.map((item) => (
+            {changedOrder[index].items?.map((item) => (
               <div
                 key={item.id}
-                id={id.concat(" ", attributes[index].id, ":", item.id)}
+                id={id.concat(
+                  " ",
+                  changedOrder[index].id,
+                  ":",
+                  item.id
+                )}
               >
                 <div
                   onClick={(e) => handleAttrClick(e)}
                   className={
                     this.props.selectedItem?.selectedAttr?.indexOf(
-                      id.concat(" ", attributes[index].id, ":", item.id)
-                    ) !== -1 && attributes[index].type === "swatch"
+                      id.concat(
+                        " ",
+                        changedOrder[index].id,
+                        ":",
+                        item.id
+                      )
+                    ) !== -1 &&
+                    changedOrder[index].type === "swatch"
                       ? "art-box art-Is-Selected-Swatch"
                       : this.props.selectedItem?.selectedAttr?.indexOf(
-                          id.concat(" ", attributes[index].id, ":", item.id)
-                        ) !== -1 && attributes[index].type !== "swatch"
+                          id.concat(
+                            " ",
+                            changedOrder[index].id,
+                            ":",
+                            item.id
+                          )
+                        ) !== -1 &&
+                        changedOrder[index].type !==
+                          "swatch"
                       ? "art-box art-Is-Selected"
                       : "art-box"
                   }
-                  id={id.concat(" ", attributes[index].id, ":", item.id)}
+                  id={id.concat(
+                    " ",
+                    changedOrder[index].id,
+                    ":",
+                    item.id
+                  )}
                   style={{
                     backgroundColor:
-                      attributes[index].type === "swatch"
+                      changedOrder[index].type === "swatch"
                         ? item.value
                         : undefined,
                   }}
                 >
-                  {attributes[index].type === "swatch" ? "" : item.value}
+                  {changedOrder[index].type === "swatch"
+                    ? ""
+                    : item.value}
                 </div>
               </div>
             ))}
@@ -70,12 +100,7 @@ export class Attributes extends Component {
       );
     });
 
-    return (
-      <>
-        {attributes && mappedAttr}
-        <br />
-      </>
-    );
+    return <>{attributes && mappedAttr}</>;
   }
 }
 
@@ -91,4 +116,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Attributes);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Attributes);

@@ -8,7 +8,9 @@ import {
 } from "../../Actions/actions";
 
 export class Carousel extends Component {
+
   render() {
+    
     const newId = this.props.newId;
     const quantity = this.props.quantity;
     const gallery = this.props.gallery;
@@ -30,7 +32,11 @@ export class Carousel extends Component {
           {
             <div>
               {i === current && (
-                <img src={img} alt={id} className="cart-image" />
+                <img
+                  src={img}
+                  alt={id}
+                  className="cart-image"
+                />
               )}
             </div>
           }
@@ -43,7 +49,9 @@ export class Carousel extends Component {
         <div className="carousel-div">
           <div className="cart-quantity">
             <div
-              onClick={(e) => this.props.increaseQuantity(e)}
+              onClick={(e) =>
+                this.props.increaseQuantity(e)
+              }
               id={newId}
               className="increment-decrement"
             >
@@ -61,10 +69,16 @@ export class Carousel extends Component {
           <div className="carousel">
             {visible && (
               <>
-                <span onClick={this.props.prevSlide} className="left-arrow">
+                <span
+                  onClick={this.props.prevSlide}
+                  className="left-arrow"
+                >
                   {"<"}
                 </span>
-                <span onClick={this.props.nextSlide} className="right-arrow">
+                <span
+                  onClick={this.props.nextSlide}
+                  className="right-arrow"
+                >
                   {" "}
                   {">"}
                 </span>
@@ -72,7 +86,6 @@ export class Carousel extends Component {
             )}
             {mappedGallery}
           </div>
-          <br />
         </div>
       </>
     );

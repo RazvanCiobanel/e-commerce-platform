@@ -25,9 +25,16 @@
 
 .buttons {
   display: flex;
-  width: fit-content;
+  width: 100%;
   margin-bottom: 20px;
+  justify-content: space-between;
+  margin-top: 35px;
 }
+
+/* .cart-link {
+  justify-self: flex-start;
+  margin-left: 6px;
+} */
 
 .disabled {
   pointer-events: none;
@@ -42,7 +49,7 @@
   font-weight: 600;
   background-color: white;
   border: 1px solid #1d1f22;
-  margin: 6px;
+  
 }
 
 .check-out {
@@ -55,5 +62,9 @@
   color: white;
   background-color: #5ece7b;
   border: 0;
-  margin: 6px;
+  margin-right: 20px;
 }
+/* .checkout-div {
+  justify-self: flex-end;
+  margin-right: 6px;
+} */

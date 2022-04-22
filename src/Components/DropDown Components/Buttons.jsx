@@ -7,9 +7,10 @@ import { Link, withRouter } from "react-router-dom";
 import { totalSelector } from "../../Selectors/totalSelector";
 
 const CartLink = styled(Link)`
-  display:inline-block;
+  display: inline-block;
   text-decoration: none;
   color: #1d1f22;
+  margin-left: 13px;
 
   &:focus,
   &:active {
@@ -19,13 +20,15 @@ const CartLink = styled(Link)`
 `;
 
 export class Buttons extends Component {
+
   render() {
+    
     const cart = this.props.cart.cartItems;
     const currencies = this.props.currencies;
     const selectedCurr = this.props.selectedCurr;
     const total = this.props.total;
 
-    const liknClass = cart?.length === 0 ? "disabled" : ""
+    const liknClass = cart?.length === 0 ? "disabled" : "";
 
     const mappedCurr = currencies?.map((item) => {
       return item.label === selectedCurr ? (
@@ -48,11 +51,17 @@ export class Buttons extends Component {
             replace
             className={liknClass}
           >
-            <button className="view-bag" onClick={this.props.hideMiniCart}>
+            <button
+              className="view-bag"
+              onClick={this.props.hideMiniCart}
+            >
               VIEW BAG
             </button>
           </CartLink>
-          <button onClick={this.props.resetCart} className="check-out">
+          <button
+            onClick={this.props.resetCart}
+            className="check-out"
+          >
             CHECK OUT
           </button>
         </div>

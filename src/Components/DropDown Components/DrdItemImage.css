@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: 137px;
-  margin-right: 5px;
+  margin: 0 5px;
 }
 
 .drp-incr {
@@ -41,5 +41,5 @@
 .drd-img {
   width: auto;
   object-fit: contain;
-  margin-right: 1px;
+  margin-right: 10px;
 }

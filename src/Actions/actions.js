@@ -15,13 +15,13 @@ import {
   REMOVE_FROM_CART,
   FETCH_CATEGORY,
   RESET_CATEGORY,
-  FETCH_CATEGORIES,
+  FETCH_NAMES,
 } from "./types";
 import { client } from "..";
 import {
   GET_CURRENCY_QUERY,
   GET_CATEGORY_QUERY,
-  GET_CATEGORIES_QUERY,
+  GET_NAMES_QUERY,
 } from "../GraphQl/Queries";
 import { ALL_VAR } from "../GraphQl/Variables";
 
@@ -203,15 +203,15 @@ export const resetCategory = () => {
 };
 
 export const getCatNames = () => async (dispatch) => {
-  const categories = await client.query({
-    query: GET_CATEGORIES_QUERY,
+  const names = await client.query({
+    query: GET_NAMES_QUERY,
     fetchPolicy: "no-cache",
   });
 
   dispatch({
-    type: FETCH_CATEGORIES,
+    type: FETCH_NAMES,
     payload: {
-      categories: [...categories.data.categories],
+      names: [...names.data.categories],
     },
   });
 };

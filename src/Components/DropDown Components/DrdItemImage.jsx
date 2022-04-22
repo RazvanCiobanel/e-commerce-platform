@@ -8,7 +8,9 @@ import {
 } from "../../Actions/actions";
 
 export class DrdItemImage extends Component {
+
   render() {
+    
     const id = this.props.id;
     const i = this.props.i;
     const newId = i.toString().concat(id);
@@ -35,12 +37,21 @@ export class DrdItemImage extends Component {
             +
           </div>
           <div className="drp-quantity">{quantity}</div>
-          <div onClick={(e) => handleDecr(e)} id={newId} className="drp-decr">
+          <div
+            onClick={(e) => handleDecr(e)}
+            id={newId}
+            className="drp-decr"
+          >
             -
           </div>
         </div>
         <div>
-          <img src={img} className="drd-img" height="137px" alt="" />
+          <img
+            src={img}
+            className="drd-img"
+            height="137px"
+            alt=""
+          />
         </div>
       </>
     );
@@ -55,4 +66,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(DrdItemImage);
+export default connect(
+  null,
+  mapDispatchToProps
+)(DrdItemImage);

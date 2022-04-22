@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./PDP.css";
 import { connect } from "react-redux";
 import { client } from "..";
-import { choosePdpItem, resetItem } from "../Actions/actions";
+import {
+  choosePdpItem,
+  resetItem,
+} from "../Actions/actions";
 import { GET_PRODUCT_QUERY } from "../GraphQl/Queries";
 import { withRouter } from "react-router-dom";
 import Thumbnail from "../Components/PDP Components/Thumbnail";
@@ -10,6 +13,7 @@ import Attributes from "../Components/PDP Components/Attributes";
 import Price from "../Components/PDP Components/Price";
 
 export class PDP extends Component {
+
   state = {
     product: {
       id: "",
@@ -35,7 +39,10 @@ export class PDP extends Component {
       fetchPolicy: "no-cache",
     });
     this.setState({
-      product: { ...this.state.product, ...res.data.product },
+      product: {
+        ...this.state.product,
+        ...res.data.product,
+      },
     });
 
     if (this.state.product) {
@@ -56,7 +63,12 @@ export class PDP extends Component {
     this.props.resetItem();
   }
 
+  
+
   render() {
+
+    console.log("id: ", this.state.product.id)
+    
     const setImage = (e) => {
       this.setState({
         image: e.target.id,
@@ -64,8 +76,13 @@ export class PDP extends Component {
     };
 
     return (
-      <section className="pdp" onClick={this.props.hideMiniCart}>
-        {this.props.isVisible && <div className="backdrop"></div>}
+      <section
+        className="pdp"
+        onClick={this.props.hideMiniCart}
+      >
+        {this.props.isVisible && (
+          <div className="backdrop"></div>
+        )}
         <Thumbnail
           gallery={this.state.product.gallery}
           inStock={this.state.product.inStock}
@@ -99,4 +116,6 @@ const mapDispatchToProps = (disptatch) => {
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(PDP));
+export default withRouter(
+  connect(null, mapDispatchToProps)(PDP)
+);

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./Thumbnail.css";
 
 export class Thumbnail extends Component {
+
   render() {
+    
     const gallery = this.props.gallery;
     const inStock = this.props.inStock;
     const product = JSON.parse(this.props.product);
@@ -37,7 +39,9 @@ export class Thumbnail extends Component {
             alt={product?.id}
             height="511px"
           />
-          {!inStock && <div className="image-text">OUT OF STOCK</div>}
+          {!inStock && (
+            <div className="image-text">OUT OF STOCK</div>
+          )}
         </div>
       </>
     );

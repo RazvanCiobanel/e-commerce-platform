@@ -1,4 +1,7 @@
-import { FETCH_CATEGORY, RESET_CATEGORY } from "../Actions/types";
+import {
+  FETCH_CATEGORY,
+  RESET_CATEGORY,
+} from "../Actions/types";
 
 const initialState = {
   category: {
@@ -7,7 +10,10 @@ const initialState = {
   },
 };
 
-export default function categoryReducer(state = initialState, action) {
+export default function categoryReducer(
+  state = initialState,
+  action
+) {
   switch (action.type) {
     case FETCH_CATEGORY:
       return {

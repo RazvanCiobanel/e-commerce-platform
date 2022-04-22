@@ -1,7 +1,14 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import {
+  createStore,
+  applyMiddleware,
+  compose,
+} from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./Reducers";
-import { persistStore, persistReducer } from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const initialState = {};
@@ -14,14 +21,16 @@ const persistConfig = {
   blacklist: ["selectedCurr"],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(
+  persistConfig,
+  rootReducer
+);
 
 const store = createStore(
   persistedReducer,
   initialState,
   compose(applyMiddleware(...middware))
 );
-console.log("store: ", store)
 const persistor = persistStore(store);
 
 export { store, persistor };

@@ -3,7 +3,6 @@ import "./NavLinks.css";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import brandicon from "../../brandIcon.jpg";
-import { namesSelector } from "../../Selectors/namesSelector";
 import { connect } from "react-redux";
 
 const StyledLink = styled(Link)`
@@ -29,28 +28,30 @@ const StyledLink = styled(Link)`
 `;
 
 export class NavLinks extends Component {
-  render() {
-    const catNames = this.props.categories;
 
-    const names = catNames?.map((name) => {
-      if (name === "all") {
+  render() {
+    
+    const catNames = this.props.names;
+
+    const names = catNames?.map((item) => {
+      if (item.name === "all") {
         return (
-          <li className="div-links" key={name}>
+          <li className="div-links" key={item.name}>
             <StyledLink to="/" replace>
-              {name}
+              {item.name}
             </StyledLink>
           </li>
         );
       } else {
         return (
-          <li className="div-links" key={name}>
+          <li className="div-links" key={item.name}>
             <StyledLink
               to={{
-                pathname: `/plp/${name}`,
+                pathname: `/plp/${item.name}`,
               }}
               replace
             >
-              {name}
+              {item.name}
             </StyledLink>
           </li>
         );
@@ -59,10 +60,16 @@ export class NavLinks extends Component {
 
     return (
       <>
-        <div className="nav-links" onClick={this.props.hideMiniCart}>
+        <div
+          className="nav-links"
+          onClick={this.props.hideMiniCart}
+        >
           <ul className="navbar">{names}</ul>
         </div>
-        <div className="brand-logo" onClick={this.props.hideMiniCart}>
+        <div
+          className="brand-logo"
+          onClick={this.props.hideMiniCart}
+        >
           <img src={brandicon} alt="brand icon" />
         </div>
       </>
@@ -72,8 +79,10 @@ export class NavLinks extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    categories: namesSelector(state),
+    names: state.names.names,
   };
 };
 
-export default withRouter(connect(mapStateToProps)(NavLinks));
+export default withRouter(
+  connect(mapStateToProps)(NavLinks)
+);

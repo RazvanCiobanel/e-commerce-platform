@@ -20,7 +20,10 @@ const initialState = {
   },
 };
 
-export default function selectedItemReducer(state = initialState, action) {
+export default function selectedItemReducer(
+  state = initialState,
+  action
+) {
   switch (action.type) {
     case PLP_SELECT_ITEM:
       return {
@@ -38,7 +41,10 @@ export default function selectedItemReducer(state = initialState, action) {
         },
       };
     case SELECT_PLP_ATTRIBUTES:
-      let f = selectPlpAttr(state.selectedItem.selectedAttr, action.payload);
+      let f = selectPlpAttr(
+        state.selectedItem.selectedAttr,
+        action.payload
+      );
       return {
         ...state,
         selectedItem: {
@@ -62,7 +68,10 @@ export default function selectedItemReducer(state = initialState, action) {
         },
       };
     case SELECT_PDP_ATTRIBUTES:
-      let g = selectPlpAttr(state.selectedItem.selectedAttr, action.payload);
+      let g = selectPlpAttr(
+        state.selectedItem.selectedAttr,
+        action.payload
+      );
       return {
         ...state,
         selectedItem: {

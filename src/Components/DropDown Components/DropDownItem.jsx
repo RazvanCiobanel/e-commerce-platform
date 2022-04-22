@@ -5,7 +5,9 @@ import DrdItemAttr from "./DrdItemAttr";
 import DrdItemImage from "./DrdItemImage";
 
 export class DropDownItem extends Component {
+
   render() {
+    
     return (
       <div className="drd-item">
         <div className="drd-description">
@@ -14,15 +16,15 @@ export class DropDownItem extends Component {
             name={this.props.name}
             prices={this.props.prices}
           />
-         <DrdItemAttr
-          i={this.props.i}
-          id={this.props.id}
-          quantity={this.props.quantity}
-          gallery={this.props.gallery}
-          selectedAttr = {this.props.selectedAttr}
-          attributes={this.props.attributes}
-        /> 
-        </div>        
+          <DrdItemAttr
+            i={this.props.i}
+            id={this.props.id}
+            quantity={this.props.quantity}
+            gallery={this.props.gallery}
+            selectedAttr={this.props.selectedAttr}
+            attributes={this.props.attributes}
+          />
+        </div>
         <DrdItemImage
           id={this.props.id}
           i={this.props.i}

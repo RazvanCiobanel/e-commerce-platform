@@ -15,14 +15,19 @@ const initialState = {
   },
 };
 
-export default function addToCartReducer(state = initialState, action) {
+export default function addToCartReducer(
+  state = initialState,
+  action
+) {
   switch (action.type) {
     case ADD_TO_CART:
       const index = state.cartItems?.findIndex(
         (el) => el.id === action.payload.id
       );
       const indexAttr = state.cart.cartItems?.findIndex(
-        (el) => el.id === action.payload.id && el.attributes.length === 0
+        (el) =>
+          el.id === action.payload.id &&
+          el.attributes.length === 0
       );
       const indexSelAttr = state.cart.cartItems?.findIndex(
         (el) =>
@@ -55,10 +60,16 @@ export default function addToCartReducer(state = initialState, action) {
         return {
           cart: {
             ...state.cart,
-            cartItems: state.cart.cartItems?.map((item, i) =>
-              indexAttr === i
-                ? { ...item, quantity: item.quantity + action.payload.quantity }
-                : item
+            cartItems: state.cart.cartItems?.map(
+              (item, i) =>
+                indexAttr === i
+                  ? {
+                      ...item,
+                      quantity:
+                        item.quantity +
+                        action.payload.quantity,
+                    }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity + 1,
           },
@@ -88,13 +99,14 @@ export default function addToCartReducer(state = initialState, action) {
         return {
           cart: {
             ...state.cart,
-            cartItems: state.cart.cartItems?.map((item, i) =>
-              indexSelAttr === i
-                ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                  }
-                : item
+            cartItems: state.cart.cartItems?.map(
+              (item, i) =>
+                indexSelAttr === i
+                  ? {
+                      ...item,
+                      quantity: item.quantity + 1,
+                    }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity + 1,
           },
@@ -106,7 +118,9 @@ export default function addToCartReducer(state = initialState, action) {
         (el) => el.id === action.payload.id
       );
       const indexPAttr = state.cart.cartItems?.findIndex(
-        (el) => el.id === action.payload.id && el.attributes.length === 0
+        (el) =>
+          el.id === action.payload.id &&
+          el.attributes.length === 0
       );
       const indexPSelAttr = state.cart.cartItems?.findIndex(
         (el) =>
@@ -139,10 +153,16 @@ export default function addToCartReducer(state = initialState, action) {
         return {
           cart: {
             ...state.cart,
-            cartItems: state.cart.cartItems?.map((item, i) =>
-              indexPAttr === i
-                ? { ...item, quantity: item.quantity + action.payload.quantity }
-                : item
+            cartItems: state.cart.cartItems?.map(
+              (item, i) =>
+                indexPAttr === i
+                  ? {
+                      ...item,
+                      quantity:
+                        item.quantity +
+                        action.payload.quantity,
+                    }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity + 1,
           },
@@ -172,13 +192,14 @@ export default function addToCartReducer(state = initialState, action) {
         return {
           cart: {
             ...state.cart,
-            cartItems: state.cart.cartItems?.map((item, i) =>
-              indexPSelAttr === i
-                ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                  }
-                : item
+            cartItems: state.cart.cartItems?.map(
+              (item, i) =>
+                indexPSelAttr === i
+                  ? {
+                      ...item,
+                      quantity: item.quantity + 1,
+                    }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity + 1,
           },
@@ -187,19 +208,23 @@ export default function addToCartReducer(state = initialState, action) {
       break;
     case INCREASE_QUANTITY:
       const cartItemI = state.cart.cartItems?.find(
-        (item, index) => index.toString().concat(item.id) === action.payload
+        (item, index) =>
+          index.toString().concat(item.id) ===
+          action.payload
       );
       if (cartItemI) {
         return {
           cart: {
             ...state.cart,
-            cartItems: state.cart.cartItems?.map((item, index) =>
-              index.toString().concat(item.id) === action.payload
-                ? {
-                    ...item,
-                    quantity: item.quantity + 1,
-                  }
-                : item
+            cartItems: state.cart.cartItems?.map(
+              (item, index) =>
+                index.toString().concat(item.id) ===
+                action.payload
+                  ? {
+                      ...item,
+                      quantity: item.quantity + 1,
+                    }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity + 1,
           },
@@ -208,19 +233,23 @@ export default function addToCartReducer(state = initialState, action) {
       break;
     case DECREASE_QUANTITY:
       const cartItemD = state.cart.cartItems?.find(
-        (item, index) => index.toString().concat(item.id) === action.payload
+        (item, index) =>
+          index.toString().concat(item.id) ===
+          action.payload
       );
       if (cartItemD) {
         return {
           cart: {
             ...state.cart,
-            cartItems: state.cart.cartItems?.map((item, index) =>
-              index.toString().concat(item.id) === action.payload
-                ? {
-                    ...item,
-                    quantity: item.quantity - 1,
-                  }
-                : item
+            cartItems: state.cart.cartItems?.map(
+              (item, index) =>
+                index.toString().concat(item.id) ===
+                action.payload
+                  ? {
+                      ...item,
+                      quantity: item.quantity - 1,
+                    }
+                  : item
             ),
             totalQuantity: state.cart.totalQuantity - 1,
           },
@@ -229,7 +258,9 @@ export default function addToCartReducer(state = initialState, action) {
       break;
     case REMOVE_FROM_CART:
       let filteredCart = state.cart.cartItems?.filter(
-        (item, index) => index.toString().concat(item.id) !== action.payload
+        (item, index) =>
+          index.toString().concat(item.id) !==
+          action.payload
       );
       return {
         cart: {

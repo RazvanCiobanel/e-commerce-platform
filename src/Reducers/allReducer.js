@@ -7,7 +7,10 @@ const initialState = {
   },
 };
 
-export default function allReducer(state = initialState, action) {
+export default function allReducer(
+  state = initialState,
+  action
+) {
   switch (action.type) {
     case FETCH_ALL:
       return {

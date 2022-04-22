@@ -14,5 +14,5 @@ export default combineReducers({
   cart: addToCartReducer,
   selectedItem: selectedItemReducer,
   category: categoryReducer,
-  name: catNamesReducer,
+  names: catNamesReducer,
 });

@@ -1,20 +1,17 @@
-import { FETCH_CATEGORIES } from "../Actions/types";
-import allReducer from "./allReducer";
-
+import { FETCH_NAMES } from "../Actions/types";
 
 const initialState = {
-  categories: [
-      
-  ],
+  names: [],
 };
 
-export default function catNamesReducer(state = initialState, action) {
+export default function catNamesReducer(
+  state = initialState,
+  action
+) {
   switch (action.type) {
-    case FETCH_CATEGORIES:
-      
+    case FETCH_NAMES:
       return {
-    
-        categories: [...state.categories, ...action.payload.categories],
+        names: [...action.payload.names],
       };
     default:
       return state;

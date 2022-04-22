@@ -4,12 +4,14 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 18px;
+  padding-bottom: 18px;
 }
 
 .pdp-amount {
   font-weight: bold;
   font-size: 24px;
   line-height: 18px;
+  padding-bottom: 30px;
 }
 
 .pdp-description button {
@@ -21,10 +23,11 @@
   line-height: 19px;
   border: 0;
   cursor: pointer;
+  margin-bottom: 40px;
 }
 
 .product-description {
-  width: fit-content;
+  width: 100%;
   font-family: "Roboto";
   font-style: normal;
   font-weight: normal;

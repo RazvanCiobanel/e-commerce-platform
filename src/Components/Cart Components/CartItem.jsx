@@ -5,11 +5,13 @@ import Attributes from "./Attributes";
 import Carousel from "./Carousel";
 
 export class CartItem extends Component {
+  
   state = {
     current: 0,
   };
 
   render() {
+
     const id = this.props.id;
     const gallery = this.props.gallery;
     const i = this.props.i;
@@ -56,7 +58,6 @@ export class CartItem extends Component {
             id={this.props.id}
           />
         </div>
-        <br />
         <hr />
       </>
     );

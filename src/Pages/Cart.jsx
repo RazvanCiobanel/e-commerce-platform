@@ -5,7 +5,9 @@ import CartItem from "../Components/Cart Components/CartItem";
 import key from "weak-key";
 
 export class Cart extends Component {
+
   render() {
+    
     const cart = this.props.cart.cartItems;
 
     const cartItem = cart?.map((item, i) => {
@@ -27,8 +29,13 @@ export class Cart extends Component {
     });
 
     return (
-      <section className="cart-section" onClick={this.props.hideMiniCart}>
-        {this.props.isVisible && <div className="backdrop"></div>}
+      <section
+        className="cart-section"
+        onClick={this.props.hideMiniCart}
+      >
+        {this.props.isVisible && (
+          <div className="backdrop"></div>
+        )}
         <h1 className="cart-page">CART</h1>
         <hr />
         {cart && cartItem}

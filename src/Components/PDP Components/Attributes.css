@@ -2,12 +2,18 @@
   font-weight: 600;
   font-size: 30px;
   line-height: 27px;
+  padding-bottom: 16px;
 }
 
 .pdp-name {
   font-weight: normal;
   font-size: 30px;
   line-height: 27px;
+  padding-bottom: 43px;
+}
+
+.pdp-attributes {
+  padding-bottom: 40px;
 }
 
 .pdp-attr {

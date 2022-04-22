@@ -7,13 +7,14 @@ import DropDown from "./Navbar components/DropDown";
 import NavLinks from "./Navbar components/NavLinks";
 import CartLogo from "./Navbar components/CartLogo";
 
-export class Navbar extends Component {  
+export class Navbar extends Component {
 
   componentDidMount() {
-    this.props.getCurrencies();    
-  }  
+    this.props.getCurrencies();
+  }
 
   render() {
+    
     return (
       <nav>
         <NavLinks hideMiniCart={this.props.hideMiniCart} />
@@ -25,10 +26,10 @@ export class Navbar extends Component {
               showMiniCart={this.props.showMiniCart}
             />
           </div>
-          {<DropDown 
-          hideMiniCart={this.props.hideMiniCart}
-          isVisible={this.props.isVisible}
-          />}
+          <DropDown
+            hideMiniCart={this.props.hideMiniCart}
+            isVisible={this.props.isVisible}
+          />
         </div>
       </nav>
     );

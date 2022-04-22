@@ -3,7 +3,11 @@ export default function selectPlpAttr(arr, str) {
     let b = [...arr];
     let c = [];
     const suffixObj = {};
-    if (b.findIndex((element) => element.includes(str.split(":")[0])) === -1) {
+    if (
+      b.findIndex((element) =>
+        element.includes(str.split(":")[0])
+      ) === -1
+    ) {
       b.push(str);
       c = [...b];
     } else {

@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import "./Image.css";
 import { connect } from "react-redux";
-import { addToCart, resetItem, chooseItem } from "../../Actions/actions";
+import {
+  addToCart,
+  resetItem,
+  chooseItem,
+} from "../../Actions/actions";
 import EmptyCart from "../../EmptyCart.png";
 
 export class Image extends Component {
+
   render() {
+    
     const img = this.props.img;
     const inStock = this.props.inStock;
     const name = this.props.name;
@@ -14,7 +20,11 @@ export class Image extends Component {
     const item = JSON.parse(this.props.item);
 
     const handleOnclick = (e) => {
-      if (this.props.selectedItem?.hasOwnProperty("selectedAttr") === false) {
+      if (
+        this.props.selectedItem?.hasOwnProperty(
+          "selectedAttr"
+        ) === false
+      ) {
         e.preventDefault();
         alert("One of the attributes it is not selected");
       } else if (
@@ -41,7 +51,9 @@ export class Image extends Component {
             width="auto"
             height="330px"
           />
-          {!inStock && <div className="image-text">OUT OF STOCK</div>}
+          {!inStock && (
+            <div className="image-text">OUT OF STOCK</div>
+          )}
           {this.props.showOtherAttr && (
             <button
               id={id}
@@ -53,8 +65,6 @@ export class Image extends Component {
             </button>
           )}
         </div>
-        <br />
-        <br />
         <span className="art-name" id={id}>
           <p>
             {brand} {name}
@@ -79,4 +89,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Image);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Image);

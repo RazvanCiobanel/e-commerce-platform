@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import "./DrdItemAttr.css";
+import { colorFirst } from "../../Utils/appUtils";
 
 export class DrdItemAttr extends Component {
+
   render() {
+    
     const attributes = this.props.attributes;
     const id = this.props.id;
-    const selectedAttr = this.props.selectedAttr
+    const selectedAttr = this.props.selectedAttr;
+    const changedOrder = colorFirst(attributes)
 
-    const mappedAttr = attributes?.map((attr, index) => {
+    const mappedAttr = changedOrder?.map((attr, index) => {
       return (
         <div key={attr.id}>
           {/* attribute name */}
@@ -15,28 +19,41 @@ export class DrdItemAttr extends Component {
 
           {/* attribute representation */}
           <div className="swatch-flex">
-            {attributes[index].items?.map((itemAttr) => (
+            {changedOrder[index].items?.map((itemAttr) => (
               <div key={itemAttr.id}>
                 <div
                   className={
                     selectedAttr?.indexOf(
-                      id.concat(" ", attributes[index].id, ":", itemAttr.id)
+                      id.concat(
+                        " ",
+                        changedOrder[index].id,
+                        ":",
+                        itemAttr.id
+                      )
                     ) !== -1
                       ? "drd-box"
                       : selectedAttr?.indexOf(
-                          id.concat(" ", attributes[index].id, ":", itemAttr.id)
-                        ) === -1 && attributes[index].type === "swatch"
+                          id.concat(
+                            " ",
+                            changedOrder[index].id,
+                            ":",
+                            itemAttr.id
+                          )
+                        ) === -1 &&
+                        changedOrder[index].type === "swatch"
                       ? "drd-box swatch-not-selected"
                       : "drd-box not-Selected"
                   }
                   style={{
                     backgroundColor:
-                      attributes[index].type === "swatch"
+                      changedOrder[index].type === "swatch"
                         ? itemAttr.value
                         : undefined,
                   }}
                 >
-                  {attributes[index].type === "swatch" ? "" : itemAttr.value}
+                  {changedOrder[index].type === "swatch"
+                    ? ""
+                    : itemAttr.value}
                 </div>
               </div>
             ))}

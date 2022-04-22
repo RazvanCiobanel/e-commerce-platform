@@ -4,7 +4,10 @@ const initialState = {
   selectedCurr: "USD",
 };
 
-export default function selectedCurrReducer(state = initialState, action) {
+export default function selectedCurrReducer(
+  state = initialState,
+  action
+) {
   switch (action.type) {
     case CHANGE_CURR:
       return {

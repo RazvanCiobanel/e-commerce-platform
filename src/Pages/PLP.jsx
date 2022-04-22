@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getCategory, resetCategory } from "../Actions/actions";
+import {
+  getCategory,
+  resetCategory,
+} from "../Actions/actions";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -19,8 +22,11 @@ const StyledLink = styled(Link)`
 `;
 
 export class PLP extends Component {
+
   async componentDidMount(prevProps) {
-    if (this.props.match.params !== prevProps?.match.params) {
+    if (
+      this.props.match.params !== prevProps?.match.params
+    ) {
       const name = this.props.match.params.name;
       this.props.getCategory(name);
     }
@@ -31,6 +37,7 @@ export class PLP extends Component {
   }
 
   render() {
+    
     const category = this.props.category;
 
     const name = category.name[0]
@@ -64,7 +71,9 @@ export class PLP extends Component {
 
     return (
       <section onClick={this.props.hideMiniCart}>
-        {this.props.isVisible && <div className="backdrop"></div>}
+        {this.props.isVisible && (
+          <div className="backdrop"></div>
+        )}
         <h2 className="category-heading">{name}</h2>
         {category && article}
       </section>
@@ -85,4 +94,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PLP));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PLP)
+);

@@ -1,6 +1,7 @@
 .swatch {
   display: flex;
   flex-direction: column;
+  padding-bottom: 20px;
 }
 
 .swatch-flex {
@@ -9,8 +10,8 @@
 
 .art-box {
   text-align: center;
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
   margin: 0 2px;
   border: 1px solid #1d1f22;
   display: flex;

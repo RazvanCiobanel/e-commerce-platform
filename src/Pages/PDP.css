@@ -1,6 +1,7 @@
 .pdp {
   display: flex;
   margin-top: 80px;
+  width: 91vw;
 }
 
 .backdrop {
