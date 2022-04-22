@@ -37,8 +37,7 @@ export class Thumbnail extends Component {
             className="product-image"
             src={image}
             alt={product?.id}
-            height="511px"
-          />
+            />
           {!inStock && (
             <div className="image-text">OUT OF STOCK</div>
           )}
