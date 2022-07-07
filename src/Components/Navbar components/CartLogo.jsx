@@ -1,13 +1,14 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./CartLogo.css";
 import { connect } from "react-redux";
 import cartLogo from "../../cart.jpg";
 
-export class CartLogo extends Component {
+export class CartLogo extends PureComponent {
 
   render() {
     
-    const quantity = this.props.cart.totalQuantity;
+    const {quantity, hideMiniCart,showMiniCart} = this.props
+    
 
     const displaQuantity =
       quantity === 0 ? (
@@ -19,10 +20,10 @@ export class CartLogo extends Component {
     return (
       <div
         className="logo"
-        onClick={this.props.hideMiniCart}
+        onClick={hideMiniCart}
       >
         <img
-          onClick={this.props.showMiniCart}
+          onClick={showMiniCart}
           src={cartLogo}
           alt="cart"
           className="cart"
@@ -35,7 +36,7 @@ export class CartLogo extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart.cart,
+    quantity: state.cart.cart.totalQuantity,
   };
 };
 

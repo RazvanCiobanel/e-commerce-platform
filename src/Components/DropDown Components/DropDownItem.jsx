@@ -1,35 +1,47 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./DropDownItem.css";
 import DrdItemPrice from "./DrdItemPrice";
 import DrdItemAttr from "./DrdItemAttr";
 import DrdItemImage from "./DrdItemImage";
 
-export class DropDownItem extends Component {
+export class DropDownItem extends PureComponent {
 
   render() {
     
+    const {
+      brand,
+      name,
+      prices,
+      i,
+      id,
+      quantity,
+      gallery,
+      selectedAttr,
+      attributes,
+    } = this.props;
+
     return (
       <div className="drd-item">
         <div className="drd-description">
           <DrdItemPrice
-            brand={this.props.brand}
-            name={this.props.name}
-            prices={this.props.prices}
+            brand={brand}
+            name={name}
+            prices={prices}
           />
           <DrdItemAttr
-            i={this.props.i}
-            id={this.props.id}
-            quantity={this.props.quantity}
-            gallery={this.props.gallery}
-            selectedAttr={this.props.selectedAttr}
-            attributes={this.props.attributes}
+            i={i}
+            id={id}
+            quantity={quantity}
+            gallery={gallery}
+            selectedAttr={selectedAttr}
+            attributes={attributes}
           />
         </div>
         <DrdItemImage
-          id={this.props.id}
-          i={this.props.i}
-          quantity={this.props.quantity}
-          gallery={this.props.gallery}
+          id={id}
+          i={i}
+          quantity={quantity}
+          gallery={gallery}
         />
       </div>
     );

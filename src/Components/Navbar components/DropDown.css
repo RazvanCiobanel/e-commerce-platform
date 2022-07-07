@@ -23,7 +23,7 @@
   overflow-y: auto;
   background-color: white;
   overflow-x: hidden;
-  width: 415px;
+  width: fit-content;
 }
 
 .dropdown-text {

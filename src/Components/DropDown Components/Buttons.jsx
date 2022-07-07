@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Buttons.css";
 import { connect } from "react-redux";
 import { resetCart } from "../../Actions/actions";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { totalSelector } from "../../Selectors/totalSelector";
+
 
 const CartLink = styled(Link)`
   display: inline-block;
@@ -19,16 +20,20 @@ const CartLink = styled(Link)`
   }
 `;
 
-export class Buttons extends Component {
-
+export class Buttons extends PureComponent {
   render() {
     
-    const cart = this.props.cart.cartItems;
-    const currencies = this.props.currencies;
-    const selectedCurr = this.props.selectedCurr;
-    const total = this.props.total;
-
-    const liknClass = cart?.length === 0 ? "disabled" : "";
+    const { 
+      cartItems, 
+      currencies, 
+      selectedCurr,
+      hideMiniCart,
+      resetCart,
+      total, 
+    } = this.props;
+    
+    const liknClass = cartItems?.length === 0 ? "disabled" : "";
+    
 
     const mappedCurr = currencies?.map((item) => {
       return item.label === selectedCurr ? (
@@ -53,13 +58,13 @@ export class Buttons extends Component {
           >
             <button
               className="view-bag"
-              onClick={this.props.hideMiniCart}
+              onClick={hideMiniCart}
             >
               VIEW BAG
             </button>
           </CartLink>
           <button
-            onClick={this.props.resetCart}
+            onClick={resetCart}
             className="check-out"
           >
             CHECK OUT
@@ -72,7 +77,7 @@ export class Buttons extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart.cart,
+    cartItems: state.cart.cart.cartItems,
     currencies: state.currencies.items,
     selectedCurr: state.selectedCurr.selectedCurr,
     total: totalSelector(state),

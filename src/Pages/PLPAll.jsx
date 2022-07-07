@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./PLP.css";
 import Article from "../Components/Article";
 import { Link } from "react-router-dom";
@@ -18,20 +18,20 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export class PLPAll extends Component {
+export class PLPAll extends PureComponent {
   async componentDidMount() {
     this.props.getAll();
   }
 
   render() {
     
-    const all = this.props.all;
+    const {all, hideMiniCart} = this.props;
 
     const name = this.props?.all?.name[0]
       ?.toUpperCase()
-      .concat(this.props.all.name?.slice(1));
+      .concat(all.name?.slice(1));
 
-    const article = this.props.all?.products?.map(
+    const article = all?.products?.map(
       (item) => {
         return (
           <StyledLink
@@ -59,7 +59,7 @@ export class PLPAll extends Component {
     );
 
     return (
-      <section onClick={this.props.hideMiniCart}>
+      <section onClick={hideMiniCart}>
         {this.props.isVisible && (
           <div className="backdrop"></div>
         )}

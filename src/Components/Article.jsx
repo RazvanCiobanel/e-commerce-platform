@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Article.css";
 import { connect } from "react-redux";
 import { chooseItem, resetItem } from "../Actions/actions";
@@ -6,22 +6,34 @@ import Image from "./Article Components/Image";
 import Attributes from "./Article Components/Attributes";
 import Price from "./Article Components/Price";
 
-class Article extends Component {
-
+class Article extends PureComponent {
   state = {
     showOtherAttr: false,
   };
 
   render() {
-    
-    const inStock = this.props.inStock;
-    const id = this.props.id;
-    const item = JSON.parse(this.props.item);
+
+    const {
+      inStock,
+      id,
+      item,
+      chooseItem,
+      name,
+      resetItem,
+      attributes,
+      prices,
+      selectedItem,
+      img,
+      brand,
+    } = this.props;
+
+    const { showOtherAttr } = this.state;
+    const itemObj = JSON.parse(item);
 
     const cssClass = inStock ? "in card" : "out card";
 
     const displayOtherAttr = () => {
-      if (this.state.showOtherAttr === false) {
+      if (showOtherAttr === false) {
         this.setState({
           showOtherAttr: true,
         });
@@ -29,7 +41,7 @@ class Article extends Component {
     };
 
     const hideOtherAttr = () => {
-      if (this.state.showOtherAttr === true) {
+      if (showOtherAttr === true) {
         this.setState({
           showOtherAttr: false,
         });
@@ -38,19 +50,19 @@ class Article extends Component {
 
     const handleEnter = (e) => {
       displayOtherAttr();
-      this.props.chooseItem(e, item);
+      chooseItem(e, itemObj);
     };
 
     const handleOver = (e) => {
-      if (this.props.selectedItem.id === "") {
+      if (selectedItem?.id === "") {
         displayOtherAttr();
-        this.props.chooseItem(e, item);
+        chooseItem(e, itemObj);
       }
     };
 
     const handleLeave = () => {
       hideOtherAttr();
-      this.props.resetItem();
+      resetItem();
     };
 
     return (
@@ -62,23 +74,20 @@ class Article extends Component {
         id={id}
       >
         <Image
-          id={this.props.id}
-          img={this.props.img}
-          inStock={this.props.inStock}
-          brand={this.props.brand}
-          name={this.props.name}
-          showOtherAttr={this.state.showOtherAttr}
-          item={this.props.item}
+          id={id}
+          img={img}
+          inStock={inStock}
+          brand={brand}
+          name={name}
+          showOtherAttr={showOtherAttr}
+          item={item}
         />
-        <Price
-          prices={this.props.prices}
-          id={this.props.id}
-        />
+        <Price prices={prices} id={id} />
         <Attributes
-          attributes={this.props.attributes}
-          id={this.props.id}
-          showOtherAttr={this.state.showOtherAttr}
-          inStock={this.props.inStock}
+          attributes={attributes}
+          id={id}
+          showOtherAttr={showOtherAttr}
+          inStock={inStock}
         />
       </div>
     );

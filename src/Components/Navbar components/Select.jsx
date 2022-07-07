@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Select.css";
 import { connect } from "react-redux";
 import { changeCurr } from "../../Actions/actions";
 
-export class Select extends Component {
+export class Select extends PureComponent {
 
   state = {
     visible: false,
@@ -11,8 +11,11 @@ export class Select extends Component {
 
   render() {
     
+    const { changeCurr, currencies } = this.props;
+    const { visible } = this.state;
+
     const handleOnChange = () => {
-      if (this.state.visible === false) {
+      if (visible === false) {
         this.setState({
           visible: true,
         });
@@ -23,15 +26,15 @@ export class Select extends Component {
       }
     };
 
-    const shadow = this.state.visible
+    const shadow = visible
       ? "select_options shadow"
       : "select_options";
 
-    const currency = this.props.currencies?.map((item) => {
+    const currency = currencies?.map((item) => {
       return (
         <li className="select_option" key={item.label}>
           <input
-            onChange={(e) => this.props.changeCurr(e)}
+            onChange={(e) => changeCurr(e)}
             className="select_input"
             type="radio"
             name="currency"

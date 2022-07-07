@@ -1,16 +1,19 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./DrdItemPrice.css";
 import { connect } from "react-redux";
 import { roundPrice } from "../../Utils/appUtils";
 
-export class DrdItemPrice extends Component {
-
+export class DrdItemPrice extends PureComponent {
+  
   render() {
+
+    const { 
+      brand, 
+      name, 
+      prices, 
+      selectedCurr 
+    } = this.props;
     
-    const brand = this.props.brand;
-    const name = this.props.name;
-    const prices = this.props.prices;
-    const selectedCurr = this.props.selectedCurr;
     const roundedPrices = roundPrice(prices);
 
     const price = roundedPrices?.map((price) => {

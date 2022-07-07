@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Price.css";
 import { connect } from "react-redux";
-import DOMPurify from "dompurify";
+import { Interweave } from 'interweave';
 import {
   addToCartPdp,
   resetItem,
@@ -9,25 +9,30 @@ import {
 } from "../../Actions/actions";
 import { roundPrice } from "../../Utils/appUtils";
 
-export class Price extends Component {
-
+export class Price extends PureComponent {
   render() {
-    
-    const prices = this.props.prices;
-    const inStock = this.props.inStock;
-    const selectedCurr = this.props.selectedCurr;
-    const product = JSON.parse(this.props.product);
-    const description = this.props.description;
+    const {
+      prices,
+      inStock,
+      selectedCurr,
+      description,
+      addToCartPdp,
+      selectedItem,
+      resetItem,
+      choosePdpItem,
+      product,
+    } = this.props;
+    const objProduct = JSON.parse(product);
     const roundedPrices = roundPrice(prices);
 
     const handleOnClick = (e) => {
       if (
-        this.props.selectedItem?.selectedAttr?.length ===
-        this.props.selectedItem?.attributes?.length
+        selectedItem?.selectedAttr?.length ===
+        selectedItem?.attributes?.length
       ) {
-        this.props.addToCartPdp(this.props.selectedItem);
-        this.props.resetItem();
-        this.props.choosePdpItem(product);
+        addToCartPdp(selectedItem);
+        resetItem();
+        choosePdpItem(objProduct);
       } else {
         e.preventDefault();
         alert("One of the attributes it is not selected");
@@ -35,13 +40,13 @@ export class Price extends Component {
     };
 
     const price = roundedPrices?.map((item) => {
-      return selectedCurr === item["currency"]["label"] ? (
+      return selectedCurr === item.currency.label ? (
         <p
           className="pdp-amount"
-          key={item["currency"]["label"]}
+          key={item.currency.label}
         >
-          {item["currency"]["symbol"]}
-          {item["amount"]}{" "}
+          {item.currency.symbol}
+          {item.amount}
         </p>
       ) : undefined;
     });
@@ -51,17 +56,16 @@ export class Price extends Component {
         <p className="pdp-price">PRICE:</p>
         {price}
         <button
+          className="add-button"
           onClick={(e) => handleOnClick(e)}
           disabled={!inStock}
         >
           ADD TO CART
         </button>
         <div
-          className="product-description"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(description),
-          }}
-        ></div>
+          className="product-description">
+          <Interweave content={description} />
+        </div>
       </>
     );
   }

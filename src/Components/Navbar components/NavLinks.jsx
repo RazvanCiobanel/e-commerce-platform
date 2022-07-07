@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./NavLinks.css";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
@@ -27,12 +27,13 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export class NavLinks extends Component {
+export class NavLinks extends PureComponent {
 
   render() {
     
-    const catNames = this.props.names;
+    const {catNames, hideMiniCart} = this.props
 
+    
     const names = catNames?.map((item) => {
       if (item.name === "all") {
         return (
@@ -62,13 +63,13 @@ export class NavLinks extends Component {
       <>
         <div
           className="nav-links"
-          onClick={this.props.hideMiniCart}
+          onClick={hideMiniCart}
         >
           <ul className="navbar">{names}</ul>
         </div>
         <div
           className="brand-logo"
-          onClick={this.props.hideMiniCart}
+          onClick={hideMiniCart}
         >
           <img src={brandicon} alt="brand icon" />
         </div>
@@ -79,7 +80,7 @@ export class NavLinks extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    names: state.names.names,
+    catNames: state.names.names,
   };
 };
 

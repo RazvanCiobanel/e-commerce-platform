@@ -1,22 +1,28 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Attributes.css";
 import { connect } from "react-redux";
 import { choosePdpAttr } from "../../Actions/actions";
 import { colorFirst } from "../../Utils/appUtils";
 
-export class Attributes extends Component {
+export class Attributes extends PureComponent {
 
   render() {
     
-    const attributes = this.props.attributes;
-    const id = this.props.id;
-    const product = JSON.parse(this.props.product);
-    const inStock = this.props.inStock;
-    const changedOrder = colorFirst(attributes)
+    const {
+      choosePdpAttr,
+      attributes,
+      id,
+      product,
+      inStock,
+      selectedItem,
+    } = this.props;
+
+    const productObj = JSON.parse(product);
+    const changedOrder = colorFirst(attributes);
 
     const handleAttrClick = (e) => {
       if (inStock) {
-        this.props.choosePdpAttr(e);
+        choosePdpAttr(e);
       } else {
         return undefined;
       }
@@ -36,7 +42,7 @@ export class Attributes extends Component {
                   <div
                     onClick={(e) => handleAttrClick(e)}
                     className={
-                      this.props.selectedItem?.selectedAttr?.indexOf(
+                      selectedItem?.selectedAttr?.indexOf(
                         id.concat(
                           " ",
                           changedOrder[index].id,
@@ -46,7 +52,7 @@ export class Attributes extends Component {
                       ) !== -1 &&
                       changedOrder[index].type === "swatch"
                         ? "pdp-box-swatch pdp-Is-Selected-Swatch"
-                        : this.props.selectedItem?.selectedAttr?.indexOf(
+                        : selectedItem?.selectedAttr?.indexOf(
                             id.concat(
                               " ",
                               changedOrder[index].id,
@@ -70,10 +76,12 @@ export class Attributes extends Component {
                     )}
                     style={{
                       backgroundColor:
-                        changedOrder[index].type === "swatch"
+                        changedOrder[index].type ===
+                        "swatch"
                           ? item.value
                           : undefined,
                     }}
+                    disabled={!inStock}
                   >
                     {changedOrder[index].type === "swatch"
                       ? ""
@@ -89,8 +97,8 @@ export class Attributes extends Component {
 
     return (
       <>
-        <p className="pdp-brand">{product?.brand}</p>
-        <p className="pdp-name">{product?.name}</p>
+        <p className="pdp-brand">{productObj?.brand}</p>
+        <p className="pdp-name">{productObj?.name}</p>
         <div className="pdp-attributes">
           {mappedAttributes}
         </div>

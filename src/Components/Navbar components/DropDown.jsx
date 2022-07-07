@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./DropDown.css";
 import { connect } from "react-redux";
 import key from "weak-key";
@@ -6,13 +6,16 @@ import { withRouter } from "react-router-dom";
 import DropDownItem from "../DropDown Components/DropDownItem";
 import Buttons from "../DropDown Components/Buttons";
 
-export class DropDown extends Component {
+export class DropDown extends PureComponent {
 
   render() {
     
-    const cart = this.props.cart.cartItems;
-    const isVisible = this.props.isVisible;
-    const quantity = this.props.cart.totalQuantity;
+    const { 
+      cart, 
+      isVisible, 
+      quantity, 
+      hideMiniCart 
+    } = this.props;
 
     const drdClass = isVisible
       ? "dropdown-content"
@@ -46,7 +49,7 @@ export class DropDown extends Component {
           </span>
 
           {cart && item}
-          <Buttons hideMiniCart={this.props.hideMiniCart} />
+          <Buttons hideMiniCart={hideMiniCart} />
         </div>
       </div>
     );
@@ -55,7 +58,8 @@ export class DropDown extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart.cart,
+    cart: state.cart.cart.cartItems,
+    quantity: state.cart.cart.totalQuantity,
   };
 };
 

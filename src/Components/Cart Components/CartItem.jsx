@@ -1,25 +1,34 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./CartItem.css";
 import Price from "./Price";
 import Attributes from "./Attributes";
 import Carousel from "./Carousel";
 
-export class CartItem extends Component {
-  
+export class CartItem extends PureComponent {
   state = {
     current: 0,
   };
 
   render() {
+    
+    const {
+      id,
+      gallery,
+      i,
+      prices,
+      name,
+      brand,
+      attributes,
+      selectedAttr,
+      quantity,
+    } = this.props;
+    const { current } = this.state;
 
-    const id = this.props.id;
-    const gallery = this.props.gallery;
-    const i = this.props.i;
     const newId = i.toString().concat(id);
 
     const nextSlide = () => {
       let length = gallery?.length;
-      let copy = this.state.current;
+      let copy = current;
       this.setState({
         current: copy === length - 1 ? 0 : copy + 1,
       });
@@ -27,7 +36,7 @@ export class CartItem extends Component {
 
     const prevSlide = () => {
       let length = gallery?.length;
-      let copy = this.state.current;
+      let copy = current;
       this.setState({
         current: copy === 0 ? length - 1 : copy - 1,
       });
@@ -38,24 +47,24 @@ export class CartItem extends Component {
         <div className="cart-product" id={newId}>
           <div className="description">
             <Price
-              prices={this.props.prices}
-              name={this.props.name}
-              brand={this.props.brand}
+              prices={prices}
+              name={name}
+              brand={brand}
             />
             <Attributes
-              attributes={this.props.attributes}
-              id={this.props.id}
-              selectedAttr={this.props.selectedAttr}
+              attributes={attributes}
+              id={id}
+              selectedAttr={selectedAttr}
             />
           </div>
           <Carousel
             newId={newId}
-            quantity={this.props.quantity}
-            gallery={this.props.gallery}
+            quantity={quantity}
+            gallery={gallery}
             prevSlide={prevSlide}
             nextSlide={nextSlide}
-            current={this.state.current}
-            id={this.props.id}
+            current={current}
+            id={id}
           />
         </div>
         <hr />

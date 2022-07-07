@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./DrdItemImage.css";
 import { connect } from "react-redux";
 import {
@@ -7,22 +7,27 @@ import {
   removeFromCart,
 } from "../../Actions/actions";
 
-export class DrdItemImage extends Component {
-
+export class DrdItemImage extends PureComponent {
+  
   render() {
-    
-    const id = this.props.id;
-    const i = this.props.i;
+    const {
+      id,
+      i,
+      quantity,
+      gallery,
+      increaseQuantity,
+      decreaseQuantity,
+      removeFromCart,
+    } = this.props;
+
     const newId = i.toString().concat(id);
-    const quantity = this.props.quantity;
-    const gallery = this.props.gallery;
-    const img = gallery[0];
+    const img = gallery ? gallery[0] : undefined;
 
     const handleDecr = (e) => {
       if (quantity === 1) {
-        this.props.removeFromCart(e);
+        removeFromCart(e);
       } else {
-        this.props.decreaseQuantity(e);
+        decreaseQuantity(e);
       }
     };
 
@@ -30,7 +35,7 @@ export class DrdItemImage extends Component {
       <>
         <div className="drd-quantity">
           <div
-            onClick={(e) => this.props.increaseQuantity(e)}
+            onClick={(e) => increaseQuantity(e)}
             id={newId}
             className="drp-incr"
           >

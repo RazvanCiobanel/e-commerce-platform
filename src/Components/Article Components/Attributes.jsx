@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Attributes.css";
 import { connect } from "react-redux";
 import { choosePlpAttr } from "../../Actions/actions";
 import { colorFirst } from "../../Utils/appUtils";
 
-export class Attributes extends Component {
-
+export class Attributes extends PureComponent {
   render() {
-    
-    const attributes = this.props.attributes;
-    const id = this.props.id;
-    const inStock = this.props.inStock;
+    const {
+      attributes,
+      id,
+      inStock,
+      choosePlpAttr,
+      selectedItem,
+      showOtherAttr,
+    } = this.props;
     const changedOrder = colorFirst(attributes);
 
     const handleAttrClick = (e) => {
       if (inStock) {
-        this.props.choosePlpAttr(e);
+        choosePlpAttr(e);
       } else {
         return undefined;
       }
@@ -30,7 +33,7 @@ export class Attributes extends Component {
             attr.type === "swatch"
               ? "swatch"
               : attr.type !== "swatch" &&
-                this.props.showOtherAttr === false
+                showOtherAttr === false
               ? "hidden"
               : "swatch"
           }
@@ -53,7 +56,7 @@ export class Attributes extends Component {
                 <div
                   onClick={(e) => handleAttrClick(e)}
                   className={
-                    this.props.selectedItem?.selectedAttr?.indexOf(
+                    selectedItem?.selectedAttr?.indexOf(
                       id.concat(
                         " ",
                         changedOrder[index].id,
@@ -63,7 +66,7 @@ export class Attributes extends Component {
                     ) !== -1 &&
                     changedOrder[index].type === "swatch"
                       ? "art-box art-Is-Selected-Swatch"
-                      : this.props.selectedItem?.selectedAttr?.indexOf(
+                      : selectedItem?.selectedAttr?.indexOf(
                           id.concat(
                             " ",
                             changedOrder[index].id,

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
@@ -9,7 +9,7 @@ import PLP from "./Pages/PLP";
 import { connect } from "react-redux";
 import { getCatNames } from "./Actions/actions";
 
-export class App extends Component {
+export class App extends PureComponent {
   state = {
     isVisible: false,
   };
@@ -19,6 +19,9 @@ export class App extends Component {
   }
 
   render() {
+
+    const {isVisible} = this.state
+
     const showMiniCart = () => {
       this.setState({
         isVisible: true,
@@ -26,7 +29,7 @@ export class App extends Component {
     };
 
     const hideMiniCart = () => {
-      if (this.state.isVisible === true) {
+      if (isVisible === true) {
         this.setState({
           isVisible: false,
         });
@@ -37,26 +40,26 @@ export class App extends Component {
       <div className="App">
         <Navbar
           showMiniCart={showMiniCart}
-          isVisible={this.state.isVisible}
+          isVisible={isVisible}
           hideMiniCart={hideMiniCart}
         />
 
         <Switch>
           <Route exact path="/cart">
             <Cart
-              isVisible={this.state.isVisible}
+              isVisible={isVisible}
               hideMiniCart={hideMiniCart}
             />
           </Route>
           <Route exact path="/">
             <PLPAll
-              isVisible={this.state.isVisible}
+              isVisible={isVisible}
               hideMiniCart={hideMiniCart}
             />
           </Route>
           <Route exact path="/pdp/:id">
             <PDP
-              isVisible={this.state.isVisible}
+              isVisible={isVisible}
               hideMiniCart={hideMiniCart}
             />
           </Route>
@@ -66,7 +69,7 @@ export class App extends Component {
               <PLP
                 key={props.match.params.name}
                 {...props}
-                isVisible={this.state.isVisible}
+                isVisible={isVisible}
                 hideMiniCart={hideMiniCart}
               />
             )}

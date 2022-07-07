@@ -14,7 +14,7 @@
   padding-bottom: 30px;
 }
 
-.pdp-description button {
+.add-button {
   width: 292px;
   height: 52px;
   background-color: #5ece7b;
@@ -24,6 +24,11 @@
   border: 0;
   cursor: pointer;
   margin-bottom: 40px;
+}
+
+.add-button[disabled] {
+  background-color: rgba(94, 206, 123, 0.5);
+  pointer-events: none;
 }
 
 .product-description {

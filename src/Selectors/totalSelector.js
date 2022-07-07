@@ -12,7 +12,7 @@ export const totalSelector = createSelector(
       let str = selectedCurr;
       let total = 0;
       for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr[i].prices.length; j++) {
+        for (let j = 0; j < arr[i].prices?.length; j++) {
           if (str === arr[i].prices[j].currency.label) {
             total +=
               arr[i].quantity * arr[i].prices[j].amount;

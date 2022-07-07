@@ -1,14 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Attributes.css";
 import { colorFirst } from "../../Utils/appUtils";
 
-export class Attributes extends Component {
-
+export class Attributes extends PureComponent {
   render() {
-    
-    const attributes = this.props.attributes;
-    const id = this.props.id;
-    const selectedAttr = this.props.selectedAttr;
+
+    const { attributes, id, selectedAttr } = this.props;
     const changedOrder = colorFirst(attributes);
 
     const mappedAttributes = changedOrder?.map(

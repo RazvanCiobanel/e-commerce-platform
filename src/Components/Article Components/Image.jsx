@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Image.css";
 import { connect } from "react-redux";
 import {
@@ -8,32 +8,38 @@ import {
 } from "../../Actions/actions";
 import EmptyCart from "../../EmptyCart.png";
 
-export class Image extends Component {
-
+export class Image extends PureComponent {
   render() {
-    
-    const img = this.props.img;
-    const inStock = this.props.inStock;
-    const name = this.props.name;
-    const brand = this.props.brand;
-    const id = this.props.id;
-    const item = JSON.parse(this.props.item);
+    const {
+      img,
+      inStock,
+      name,
+      brand,
+      id,
+      item,
+      selectedItem,
+      addToCart,
+      resetItem,
+      chooseItem,
+      showOtherAttr,
+    } = this.props;
+
+    const itemObj = JSON.parse(item);
 
     const handleOnclick = (e) => {
       if (
-        this.props.selectedItem?.hasOwnProperty(
-          "selectedAttr"
-        ) === false
+        selectedItem?.hasOwnProperty("selectedAttr") ===
+        false
       ) {
         e.preventDefault();
         alert("One of the attributes it is not selected");
       } else if (
-        this.props.selectedItem?.attributes?.length ===
-        this.props.selectedItem?.selectedAttr?.length
+        selectedItem?.attributes?.length ===
+        selectedItem?.selectedAttr?.length
       ) {
-        this.props.addToCart(e, this.props.selectedItem);
-        this.props.resetItem();
-        this.props.chooseItem(e, item);
+        addToCart(e, selectedItem);
+        resetItem();
+        chooseItem(e, itemObj);
       } else {
         e.preventDefault();
         alert("One of the attributes it is not selected");
@@ -54,7 +60,7 @@ export class Image extends Component {
           {!inStock && (
             <div className="image-text">OUT OF STOCK</div>
           )}
-          {this.props.showOtherAttr && (
+          {showOtherAttr && (
             <button
               id={id}
               onClick={(e) => handleOnclick(e)}

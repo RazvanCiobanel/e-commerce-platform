@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./DrdItemAttr.css";
 import { colorFirst } from "../../Utils/appUtils";
 
-export class DrdItemAttr extends Component {
-
+export class DrdItemAttr extends PureComponent {
   render() {
     
-    const attributes = this.props.attributes;
-    const id = this.props.id;
-    const selectedAttr = this.props.selectedAttr;
-    const changedOrder = colorFirst(attributes)
+    const { attributes, id, selectedAttr } = this.props;
+
+    const changedOrder = colorFirst(attributes);
 
     const mappedAttr = changedOrder?.map((attr, index) => {
       return (
@@ -40,7 +38,8 @@ export class DrdItemAttr extends Component {
                             itemAttr.id
                           )
                         ) === -1 &&
-                        changedOrder[index].type === "swatch"
+                        changedOrder[index].type ===
+                          "swatch"
                       ? "drd-box swatch-not-selected"
                       : "drd-box not-Selected"
                   }

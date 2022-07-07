@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./PDP.css";
 import { connect } from "react-redux";
 import { client } from "..";
@@ -12,8 +12,7 @@ import Thumbnail from "../Components/PDP Components/Thumbnail";
 import Attributes from "../Components/PDP Components/Attributes";
 import Price from "../Components/PDP Components/Price";
 
-export class PDP extends Component {
-
+export class PDP extends PureComponent {
   state = {
     product: {
       id: "",
@@ -63,12 +62,19 @@ export class PDP extends Component {
     this.props.resetItem();
   }
 
-  
-
   render() {
-
-    console.log("id: ", this.state.product.id)
     
+    const { product, image } = this.state;
+    const { hideMiniCart, isVisible } = this.props;
+    const {
+      id,
+      gallery,
+      inStock,
+      attributes,
+      prices,
+      description,
+    } = product;
+
     const setImage = (e) => {
       this.setState({
         image: e.target.id,
@@ -76,32 +82,27 @@ export class PDP extends Component {
     };
 
     return (
-      <section
-        className="pdp"
-        onClick={this.props.hideMiniCart}
-      >
-        {this.props.isVisible && (
-          <div className="backdrop"></div>
-        )}
+      <section className="pdp" onClick={hideMiniCart}>
+        {isVisible && <div className="backdrop"></div>}
         <Thumbnail
-          gallery={this.state.product.gallery}
-          inStock={this.state.product.inStock}
-          product={JSON.stringify(this.state.product)}
-          image={this.state.image}
+          gallery={gallery}
+          inStock={inStock}
+          product={JSON.stringify(product)}
+          image={image}
           setImage={setImage}
         />
         <div className="pdp-description">
           <Attributes
-            attributes={this.state.product.attributes}
-            id={this.state.product.id}
-            product={JSON.stringify(this.state.product)}
-            inStock={this.state.product.inStock}
+            attributes={attributes}
+            id={id}
+            product={JSON.stringify(product)}
+            inStock={inStock}
           />
           <Price
-            prices={this.state.product.prices}
-            inStock={this.state.product.inStock}
-            product={JSON.stringify(this.state.product)}
-            description={this.state.product.description}
+            prices={prices}
+            inStock={inStock}
+            product={JSON.stringify(product)}
+            description={description}
           />
         </div>
       </section>

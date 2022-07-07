@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./PLP.css";
 import Article from "../Components/Article";
 import { Link } from "react-router-dom";
@@ -21,8 +21,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export class PLP extends Component {
-
+export class PLP extends PureComponent {
   async componentDidMount(prevProps) {
     if (
       this.props.match.params !== prevProps?.match.params
@@ -37,8 +36,10 @@ export class PLP extends Component {
   }
 
   render() {
-    
-    const category = this.props.category;
+    const { category, 
+            hideMiniCart, 
+            isVisible 
+          } = this.props;
 
     const name = category.name[0]
       ?.toUpperCase()
@@ -70,10 +71,8 @@ export class PLP extends Component {
     });
 
     return (
-      <section onClick={this.props.hideMiniCart}>
-        {this.props.isVisible && (
-          <div className="backdrop"></div>
-        )}
+      <section onClick={hideMiniCart}>
+        {isVisible && <div className="backdrop"></div>}
         <h2 className="category-heading">{name}</h2>
         {category && article}
       </section>

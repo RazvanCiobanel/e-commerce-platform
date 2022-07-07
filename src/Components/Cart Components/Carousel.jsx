@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Carousel.css";
 import { connect } from "react-redux";
 import {
@@ -7,22 +7,29 @@ import {
   decreaseQuantity,
 } from "../../Actions/actions";
 
-export class Carousel extends Component {
+export class Carousel extends PureComponent {
 
   render() {
     
-    const newId = this.props.newId;
-    const quantity = this.props.quantity;
-    const gallery = this.props.gallery;
-    const current = this.props.current;
-    const id = this.props.id;
+    const {
+      newId,
+      quantity,
+      gallery,
+      current,
+      id,
+      removeFromCart,
+      decreaseQuantity,
+      increaseQuantity,
+      prevSlide,
+      nextSlide,
+    } = this.props;
     let visible = gallery?.length <= 1 ? false : true;
 
     const handleDecr = (e) => {
       if (quantity === 1) {
-        this.props.removeFromCart(e);
+        removeFromCart(e);
       } else {
-        this.props.decreaseQuantity(e);
+        decreaseQuantity(e);
       }
     };
 
@@ -49,9 +56,7 @@ export class Carousel extends Component {
         <div className="carousel-div">
           <div className="cart-quantity">
             <div
-              onClick={(e) =>
-                this.props.increaseQuantity(e)
-              }
+              onClick={(e) => increaseQuantity(e)}
               id={newId}
               className="increment-decrement"
             >
@@ -70,16 +75,15 @@ export class Carousel extends Component {
             {visible && (
               <>
                 <span
-                  onClick={this.props.prevSlide}
+                  onClick={prevSlide}
                   className="left-arrow"
                 >
                   {"<"}
                 </span>
                 <span
-                  onClick={this.props.nextSlide}
+                  onClick={nextSlide}
                   className="right-arrow"
                 >
-                  {" "}
                   {">"}
                 </span>
               </>

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Cart.css";
 import { connect } from "react-redux";
 import CartItem from "../Components/Cart Components/CartItem";
 import key from "weak-key";
 
-export class Cart extends Component {
+export class Cart extends PureComponent {
 
   render() {
     
-    const cart = this.props.cart.cartItems;
+    const {cart} = this.props
 
     const cartItem = cart?.map((item, i) => {
       return (
@@ -46,7 +46,7 @@ export class Cart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart.cart,
+    cart: state.cart.cart.cartItems,
   };
 };
 

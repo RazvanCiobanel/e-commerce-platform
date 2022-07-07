@@ -1,25 +1,30 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./Thumbnail.css";
 
-export class Thumbnail extends Component {
-
+export class Thumbnail extends PureComponent {
   render() {
-    
-    const gallery = this.props.gallery;
-    const inStock = this.props.inStock;
-    const product = JSON.parse(this.props.product);
-    const image = this.props.image;
+
+    const { 
+      gallery, 
+      inStock, 
+      product, 
+      image, 
+      setImage 
+    } = this.props;
+
+    const productObj = JSON.parse(product);
 
     const mappedGallery = gallery.map((item) => {
       return (
         <img
+          className="thumbnail"
           src={item}
           key={item}
-          alt={product?.id}
+          alt={productObj?.id}
           height="80px"
           onError={(e) => (e.target.style.display = "none")}
           id={item}
-          onClick={(e) => this.props.setImage(e)}
+          onClick={(e) => setImage(e)}
         />
       );
     });
@@ -36,8 +41,9 @@ export class Thumbnail extends Component {
           <img
             className="product-image"
             src={image}
-            alt={product?.id}
-            />
+            alt={productObj?.id}
+            height="511px"
+          />
           {!inStock && (
             <div className="image-text">OUT OF STOCK</div>
           )}

@@ -47,6 +47,11 @@
   letter-spacing: 0.05em;
 }
 
+.pdp-box[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .pdp-box-swatch {
   width: 63px;
   height: 63px;
@@ -56,6 +61,11 @@
   align-items: center;
   cursor: pointer;
   margin: 10px 6px;
+}
+
+.pdp-box-swatch[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .pdp-Is-Selected-Swatch {

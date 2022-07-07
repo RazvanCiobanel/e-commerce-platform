@@ -31,12 +31,14 @@ export const getAll = () => async (dispatch) => {
     variables: ALL_VAR,
     fetchPolicy: "no-cache",
   });
+  const { category } = all.data;
+  const { name, products } = all.data.category;
   dispatch({
     type: FETCH_ALL,
     payload: {
-      ...all.data.category,
-      name: all.data.category.name,
-      products: [...all.data.category.products],
+      ...category,
+      name: name,
+      products: [...products],
     },
   });
 };
@@ -61,17 +63,27 @@ export const changeCurr = (e) => {
 
 export const addToCart = (e, item) => {
   e.preventDefault();
+  const {
+    id,
+    name,
+    gallery,
+    attributes,
+    prices,
+    brand,
+    quantity,
+    selectedAttr,
+  } = item;
   return {
     type: ADD_TO_CART,
     payload: {
-      id: item?.id,
-      name: item?.name,
-      gallery: item?.gallery,
-      attributes: item?.attributes,
-      prices: item?.prices,
-      brand: item?.brand,
-      quantity: item?.quantity,
-      selectedAttr: item?.selectedAttr,
+      id: id,
+      name: name,
+      gallery: gallery,
+      attributes: attributes,
+      prices: prices,
+      brand: brand,
+      quantity: quantity,
+      selectedAttr: selectedAttr,
     },
   };
 };
@@ -83,17 +95,27 @@ export const resetCart = () => {
 };
 
 export const addToCartPdp = (item) => {
+  const {
+    id,
+    name,
+    gallery,
+    attributes,
+    prices,
+    brand,
+    quantity,
+    selectedAttr,
+  } = item;
   return {
     type: ADD_FROM_PDP,
     payload: {
-      id: item?.id,
-      name: item?.name,
-      gallery: item?.gallery,
-      attributes: item?.attributes,
-      prices: item?.prices,
-      brand: item?.brand,
-      quantity: item?.quantity,
-      selectedAttr: item?.selectedAttr,
+      id: id,
+      name: name,
+      gallery: gallery,
+      attributes: attributes,
+      prices: prices,
+      brand: brand,
+      quantity: quantity,
+      selectedAttr: selectedAttr,
     },
   };
 };
@@ -101,16 +123,17 @@ export const addToCartPdp = (item) => {
 export const chooseItem = (e, item) => {
   if (item) {
     e.preventDefault();
-
+    const { id, name, gallery, attributes, prices, brand } =
+      item;
     return {
       type: PLP_SELECT_ITEM,
       payload: {
-        id: item?.id,
-        name: item?.name,
-        gallery: item?.gallery,
-        attributes: item?.attributes,
-        prices: item?.prices,
-        brand: item?.brand,
+        id: id,
+        name: name,
+        gallery: gallery,
+        attributes: attributes,
+        prices: prices,
+        brand: brand,
         quantity: 1,
         selectedAttr: [],
       },
@@ -134,15 +157,17 @@ export const resetItem = () => {
 
 export const choosePdpItem = (item) => {
   if (item) {
+    const { id, name, gallery, attributes, prices, brand } =
+      item;
     return {
       type: PDP_SELECT_ITEM,
       payload: {
-        id: item?.id,
-        name: item?.name,
-        gallery: item?.gallery,
-        attributes: item?.attributes,
-        prices: item?.prices,
-        brand: item?.brand,
+        id: id,
+        name: name,
+        gallery: gallery,
+        attributes: attributes,
+        prices: prices,
+        brand: brand,
         quantity: 1,
         selectedAttr: [],
       },
@@ -187,11 +212,12 @@ export const getCategory = (id) => async (dispatch) => {
     },
     fetchPolicy: "no-cache",
   });
+  const { name, products } = category.data.category;
   dispatch({
     type: FETCH_CATEGORY,
     payload: {
-      name: category.data.category.name,
-      products: [...category.data.category.products],
+      name: name,
+      products: [...products],
     },
   });
 };
